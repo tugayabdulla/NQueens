@@ -124,7 +124,6 @@ def ga():
     p.calculate_fitness_scores()
     p.survive()
     gen = 0
-    best_board = p.individuals[p.fitness_scores.argmin()]
     while min(p.fitness_scores) != 0:
         p.reproduce_new_population()
         p.calculate_fitness_scores()
@@ -132,7 +131,7 @@ def ga():
         print(f'Generation {gen}\'s best score: {min(p.fitness_scores)}')
         p.survive()
 
-    print(p.individuals[p.fitness_scores == 0][0])
+    best_board = p.individuals[p.fitness_scores.argmin()]
     try:
         best_board.get_image().save('result.png')
         print('You can check image at result.png')
